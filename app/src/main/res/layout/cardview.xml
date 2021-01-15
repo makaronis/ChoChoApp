@@ -86,7 +86,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:fontFamily="@font/rhodium_libre"
+
         android:gravity="center"
         android:text="@string/allTrains"
         android:textColor="#FFFFFF"
@@ -100,7 +100,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/rhodium_libre"
+
         android:gravity="center"
         android:text="@string/locomotives"
         android:textColor="#FFFFFF"
@@ -114,7 +114,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/rhodium_libre"
+
         android:gravity="center"
         android:text="@string/wagons"
         android:textColor="#FFFFFF"
@@ -128,7 +128,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/rhodium_libre"
+
         android:gravity="center"
         android:text="@string/search"
         android:textColor="#FFFFFF"
@@ -144,7 +144,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="155dp"
 
-        android:fontFamily="@font/rhodium_libre"
+
         android:gravity="center"
         android:text=" in your collection"
         android:textColor="#FFFFFF"
@@ -160,7 +160,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="206dp"
         android:layout_marginBottom="7dp"
-        android:fontFamily="@font/rhodium_libre"
+
         android:text="43"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
@@ -178,10 +178,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
 
+        android:contentDescription="TODO"
         app:backgroundTint="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add_train"
-        android:contentDescription="TODO" />
+        app:srcCompat="@drawable/ic_add_train" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

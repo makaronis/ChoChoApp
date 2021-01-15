@@ -5,6 +5,14 @@
 
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.makaroni.chocho.menu.MenuFragment"
-        android:label="MenuFragment" />
+        android:name="com.makaroni.chocho.ui.collection.CollectionFragment"
+        android:label="MenuFragment" >
+        <action
+            android:id="@+id/action_menuFragment_to_editorFragment"
+            app:destination="@id/editorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editorFragment"
+        android:name="com.makaroni.chocho.ui.editor.EditorFragment"
+        android:label="EditorFragment" />
 </navigation>

@@ -12,7 +12,7 @@
     <!-- Strings for Editor Activity -->
     <string name="image">Image</string>
     <string name="type">Type</string>
-    <string name="subtype">SubType</string>
+    <string name="subtype">Sub Type</string>
     <string name="modelName">Model Name</string>
     <string name="article">Article</string>
     <string name="manufacturer">Manufacturer</string>
@@ -37,6 +37,7 @@
     <string name="settings">Settings</string>
     <string name="about">About</string>
     <string name="logout">Logout</string>
+    <string name="add_new_model">Add new model</string>
 
 
 </resources>
