@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "331283844427",
+    "project_id": "trains-app-63c25",
+    "storage_bucket": "trains-app-63c25.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331283844427:android:310bef1c4e247d92856cce",
+        "android_client_info": {
+          "package_name": "com.makaroni.chocho"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331283844427-n6r519gf9l9d9ekcjko5ffdd73efsknm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.makaroni.chocho",
+            "certificate_hash": "c57fbed22a1da913e11306867881521c3fadd488"
+          }
+        },
+        {
+          "client_id": "331283844427-7cirgci61kpfqjqt4h6eqtbnffbhutvi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPcK4fnpPHGbK0l-6JUICDBKVHertuy3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331283844427-7cirgci61kpfqjqt4h6eqtbnffbhutvi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

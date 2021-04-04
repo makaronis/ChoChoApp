@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         allTrainsView = findViewById(R.id.text_trains);
         locomotivesView = findViewById(R.id.text_locomotives);
         wagonsView = findViewById(R.id.text_wagons);
