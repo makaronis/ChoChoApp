@@ -1,4 +1,6 @@
 package com.makaroni.chocho.ui.editor
 
-class EditorViewModel {
+import androidx.lifecycle.ViewModel
+
+class EditorViewModel : ViewModel() {
 }

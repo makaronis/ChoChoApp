@@ -16,7 +16,7 @@ public class TrainsContract {
     public final static String IMAGE_TABLE_NAME = "image";
 
     // URI's
-    public static final String CONTENT_AUTHORITY = "com.example.chocho";
+    public static final String CONTENT_AUTHORITY = "com.makaroni.chocho";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     public final static Uri TRAINS_CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI,PATH_TRAINS);
     public final static Uri IMAGE_CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI,PATH_IMAGE);

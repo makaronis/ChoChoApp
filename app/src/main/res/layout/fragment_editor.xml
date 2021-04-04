@@ -3,24 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorPrimaryDark"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            app:title="@string/add_new_model"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:title="@string/add_new_model"
+            app:titleTextColor="@color/colorWhite" />
     </com.google.android.material.appbar.AppBarLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +34,8 @@
 
             <TextView
                 android:id="@+id/textView3"
-                style="@style/EditorTextViewStyle"
+                android:textSize="16dp"
+                android:textColor="@color/colorBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -56,14 +59,14 @@
                 app:srcCompat="@drawable/imagetest" />
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/EditorTextInputLayoutStyle"
                 android:id="@+id/ltAtricle"
+                style="@style/EditorTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                app:backgroundTint="@color/colorPrimaryDark"
                 android:layout_marginEnd="16dp"
+                app:backgroundTint="@color/colorPrimaryDark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/shapeableImageView2">
@@ -78,9 +81,9 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ltManufacturer"
+                style="@style/EditorTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditorTextInputLayoutStyle"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
@@ -100,11 +103,13 @@
                 android:id="@+id/ltType"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                 android:layout_width="0dp"
-                app:boxCornerRadiusTopStart="15dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:hint="@string/type"
+                android:textColorHint="@color/colorWhite"
+                app:boxBackgroundColor="@color/colorPrimary"
+                app:boxCornerRadiusTopStart="15dp"
                 app:layout_constraintEnd_toStartOf="@+id/ltSubType"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ltManufacturer">
@@ -112,12 +117,12 @@
                 <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none" />
+                    android:inputType="none"
+                    android:textColor="@color/colorWhite" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ltSubType"
-                app:boxCornerRadiusTopEnd="15dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -125,6 +130,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/subtype"
+                android:textColorHint="@color/colorWhite"
+                app:boxBackgroundColor="@color/colorPrimary"
+                app:boxCornerRadiusTopEnd="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ltType"
                 app:layout_constraintTop_toBottomOf="@+id/ltManufacturer">
@@ -137,12 +145,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ltModel"
+                style="@style/EditorTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                style="@style/EditorTextInputLayoutStyle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ltSubType">
@@ -157,8 +165,8 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ltRailwayCompany"
-                android:layout_width="match_parent"
                 style="@style/EditorTextInputLayoutStyle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
@@ -176,10 +184,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ltNote"
+                style="@style/EditorTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                style="@style/EditorTextInputLayoutStyle"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
@@ -197,7 +205,6 @@
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

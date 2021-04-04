@@ -37,7 +37,6 @@ public class TrainsSQL extends SQLiteOpenHelper {
 
         db.execSQL(SQL_CREATE_TRAINS_TABLE);
         db.execSQL(SQL_IMAGE_TABLE_CREATE);
-
     }
 
     @Override

@@ -26,6 +26,7 @@ public class TrainsProvider extends ContentProvider {
     private static final int WAGONS = 400 ;
 
     private static final int SEARCH = 333 ;
+
     static {
         // The calls to addURI() go here, for all of the content URI patterns that the provider
         // should recognize. All paths added to the UriMatcher have a corresponding code to return
