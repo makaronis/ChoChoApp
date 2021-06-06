@@ -2,10 +2,15 @@ package com.makaroni.chocho
 
 import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.makaroni.chocho.api.FirestoreManager
 import com.makaroni.chocho.data.TrainsContract
 import com.makaroni.chocho.data.db.TrainModel
@@ -17,12 +22,17 @@ class MainActivityKt : FragmentActivity() {
 
     private lateinit var activityBinding: ActivityMainBinding
 
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityBinding.root)
         putDummy()
         fireStoreTest()
+        auth = Firebase.auth
+        val currentUser = auth.currentUser
+        Log.d(TAG,"currentUser=$currentUser")
     }
 
     fun subscribeToolbarLeadingButton(
@@ -52,6 +62,14 @@ class MainActivityKt : FragmentActivity() {
                 railwayCompany = "rresss"
             )
         )
+    }
+
+    fun showProgressBar(){
+        activityBinding.progressBar.visibility = View.VISIBLE
+    }
+
+    fun hideProgressBar(){
+        activityBinding.progressBar.visibility = View.GONE
     }
 
     fun toggleDrawer() {

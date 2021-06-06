@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.makaroni.chocho.MainActivityKt
 import com.makaroni.chocho.R
 import com.makaroni.chocho.databinding.FragmentCollectionBinding
+import java.lang.RuntimeException
 
 
 class CollectionFragment : Fragment() {
@@ -22,7 +23,11 @@ class CollectionFragment : Fragment() {
 
     private var pagerAdapter: CollectionAdapter? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         fragmentBinding = FragmentCollectionBinding.inflate(inflater, container, false)
         return fragmentBinding.root
     }
@@ -32,9 +37,10 @@ class CollectionFragment : Fragment() {
         subscribeToolbar()
         subscribeUi()
         subscribeViewPager()
+        navigateToAuth()
     }
 
-    private fun subscribeUi(){
+    private fun subscribeUi() {
         fragmentBinding.apply {
             fabAdd.setOnClickListener { navigateToEditor() }
         }
@@ -69,6 +75,11 @@ class CollectionFragment : Fragment() {
 
     private fun navigateToSearch() {
 
+    }
+
+    private fun navigateToAuth() {
+//        findNavController().navigate(CollectionFragmentDirections.actionMenuFragmentToAuthParentFragment())
+        findNavController().navigate(CollectionFragmentDirections.actionMenuFragmentToAuthGraph())
     }
 
     private fun navigateToEditor() {

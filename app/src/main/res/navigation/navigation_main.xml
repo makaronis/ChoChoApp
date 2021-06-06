@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_main"
     app:startDestination="@id/menuFragment">
+
+    <include app:graph="@navigation/navigation_auth" />
 
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.makaroni.chocho.ui.collection.CollectionFragment"
-        android:label="MenuFragment" >
+        android:label="MenuFragment">
         <action
             android:id="@+id/action_menuFragment_to_editorFragment"
             app:destination="@id/editorFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_authParentFragment"
+            app:destination="@id/authParentFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_authGraph"
+            app:destination="@id/navigation_auth"/>
     </fragment>
     <fragment
         android:id="@+id/editorFragment"
         android:name="com.makaroni.chocho.ui.editor.EditorFragment"
         android:label="EditorFragment" />
+
+    <fragment
+        android:id="@+id/authParentFragment"
+        android:name="com.makaroni.chocho.features.account.presentation.AuthParentFragment"
+        android:label="AuthParentFragment" />
+
+
 </navigation>

@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">ChoCho</string>
     <string name="action_settings">Settings</string>
+    <string name="error_unknown">Unknown error</string>
+    <string name="db_update_success">Db update successful</string>
+    <string name="db_update_failure">Db update failure</string>
     <!-- Strings for menu options -->
     <string name="saveAction">Save</string>
     <string name="deleteAction">Delete</string>
