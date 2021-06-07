@@ -16,8 +16,10 @@ import com.makaroni.chocho.data.TrainsContract
 import com.makaroni.chocho.data.db.TrainModel
 import com.makaroni.chocho.data.model.CollectionType
 import com.makaroni.chocho.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
 
+@AndroidEntryPoint
 class MainActivityKt : FragmentActivity() {
 
     private lateinit var activityBinding: ActivityMainBinding

@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -23,19 +25,16 @@ import com.makaroni.chocho.ext.showErrorSnackbar
 import com.makaroni.chocho.ext.showProgressBar
 import com.makaroni.chocho.ext.showSnackbar
 import com.makaroni.chocho.utils.observeOnLifecycle
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     private val fragmentBinding by viewBinding(FragmentAuthBinding::bind)
 
     private var googleSignInClient: GoogleSignInClient? = null
 
-    private val fragmentViewModel: AuthViewModel by lazy {
-        findNavController().getViewModelStoreOwner(R.id.navigation_auth).viewModel<AuthViewModel>()
-    }
+    private val viewModel: AuthViewModel by hiltNavGraphViewModels(R.id.navigation_auth)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,16 +49,30 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
     }
 
     private fun subscribeObservers() {
-//        fragmentViewModel.eventsFlow.observeOnLifecycle(this.viewLifecycleOwner) {
-//            handleUiEvent(it)
-//        }
-//        fragmentViewModel.uiState.observeOnLifecycle(this.viewLifecycleOwner) {
-//            handleUiState(it)
-//        }
+        viewModel.eventsFlow.observeOnLifecycle(this.viewLifecycleOwner) {
+            handleUiEvent(it)
+        }
+        viewModel.uiState.observeOnLifecycle(this.viewLifecycleOwner) {
+            handleUiState(it)
+        }
     }
 
     private fun subscribeUi() {
-//        fragmentBinding.signInButton.setOnClickListener { signInWithGoogle() }
+        fragmentBinding.apply {
+            etEmail.setText(viewModel.email)
+            etPassword.setText(viewModel.password)
+
+            btnGoogleSign.setOnClickListener { signInWithGoogle() }
+            btnSignUp.setOnClickListener { signUpWithEmailPassword() }
+            etEmail.doOnTextChanged { text, _, _, _ ->
+                ltEmail.error = null
+                viewModel.email = text.toString()
+            }
+            etPassword.doOnTextChanged { text, _, _, _ ->
+                ltPassword.error = null
+                viewModel.password = text.toString()
+            }
+        }
     }
 
     private fun navigateTo(destination: ResId) {
@@ -71,19 +84,19 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     private fun handleUiState(state: UiState<Nothing>) {
         when (state) {
-            is UiState.Error -> TODO()
+//            is UiState.Error -> TODO()
             UiState.Idle -> hideProgressBar()
             UiState.Loading -> showProgressBar()
-            is UiState.Success -> TODO()
+//            is UiState.Success -> TODO()
         }
     }
 
     private fun handleUiEvent(event: UiEvent) {
-//        when (event) {
-//            is UiEvent.NavigateTo -> navigateTo(event.id)
-//            is UiEvent.Error -> showErrorSnackbar(fragmentBinding.root, event)
-//            is UiEvent.ShowSnackbar -> showSnackbar(fragmentBinding.root, event)
-//        }
+        when (event) {
+            is UiEvent.NavigateTo -> navigateTo(event.id)
+            is UiEvent.Error -> showErrorSnackbar(fragmentBinding.root, event)
+            is UiEvent.ShowSnackbar -> showSnackbar(fragmentBinding.root, event)
+        }
     }
 
     private fun signInWithGoogleInit() {
@@ -94,6 +107,24 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
         googleSignInClient = GoogleSignIn.getClient(requireContext(), googleSingInOptions)
     }
 
+    private fun signUpWithEmailPassword() {
+        val isPasswordValid = viewModel.validatePassword()
+        val isEmailValid = viewModel.validateEmail()
+        val isFieldsValid = isEmailValid && isPasswordValid
+
+        if (!isPasswordValid) {
+            fragmentBinding.ltPassword.error = getString(R.string.auth_error_password)
+        }
+
+        if (!isEmailValid) {
+            fragmentBinding.ltEmail.error = getString(R.string.auth_error_email)
+        }
+
+        if (isFieldsValid) {
+            viewModel.signUpWithEmailPassword()
+        }
+    }
+
     private fun signInWithGoogle() {
         openGoogleAuthActivity.launch(googleSignInClient?.signInIntent)
     }
@@ -101,7 +132,7 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
     private fun handleGoogleAuth(account: GoogleSignInAccount) {
         val googleTokenId = account.idToken
         val googleAuthCredential = GoogleAuthProvider.getCredential(googleTokenId, null)
-//        fragmentViewModel.signInWithGoogle(googleAuthCredential)
+        viewModel.signInWithGoogle(googleAuthCredential)
     }
 
     private val openGoogleAuthActivity =

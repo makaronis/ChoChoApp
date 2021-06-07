@@ -41,6 +41,11 @@
     <string name="about">About</string>
     <string name="logout">Logout</string>
     <string name="add_new_model">Add new model</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="signup">Sign Up</string>
+    <string name="auth_error_password">Password length must be at least 6 symbols</string>
+    <string name="auth_error_email">Email is not valid</string>
 
 
 </resources>

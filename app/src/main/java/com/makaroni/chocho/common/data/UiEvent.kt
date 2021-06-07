@@ -7,7 +7,7 @@ sealed interface UiEvent {
     data class ShowSnackbar(val msg: ResId, val duration: Int = Snackbar.LENGTH_SHORT) : UiEvent
     data class Error(
         val msg: ResId = ResId(R.string.error_unknown),
-        val exception: Exception?,
+        val exception: Exception? = Exception(),
         val duration: Int = Snackbar.LENGTH_SHORT
     ) : UiEvent
 

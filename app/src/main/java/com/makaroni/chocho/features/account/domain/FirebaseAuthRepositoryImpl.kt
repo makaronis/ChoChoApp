@@ -44,7 +44,7 @@ class FirebaseAuthRepositoryImpl : AuthRepository {
 
     override suspend fun signInEmail(email: String, password: String): AuthResult =
         suspendCoroutine { continuation ->
-            firebaseAuth.signInWithEmailAndPassword(email, password)
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val isNewUser = task.result?.additionalUserInfo?.isNewUser == true

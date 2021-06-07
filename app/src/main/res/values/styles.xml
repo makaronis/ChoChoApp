@@ -10,6 +10,7 @@
         <item name="colorControlActivated">@color/colorPrimaryDarkDark</item>
         <item name="colorControlHighlight">@color/colorPrimaryDarkDark</item>
         <item name="android:textViewStyle">@style/AppTextViewStyle</item>
+        <item name="toolbarStyle">@style/ToolbarStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -71,6 +72,10 @@
         <item name="colorOnSurface">@color/colorAccent</item>
         // Normal State
 
+    </style>
+
+    <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
+        <item name="titleTextColor">@color/colorOnSurface</item>
     </style>
 
     <style name="EditorElements">

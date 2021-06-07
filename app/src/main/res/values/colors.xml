@@ -4,10 +4,10 @@
     <color name="colorPrimaryDark">#40241A</color>
     <color name="colorPrimaryDarkDark">#260e04</color>
     <color name="colorAccent">#9C786C</color>
-    <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorTextPrimary">#0F0F15</color>
     <color name="colorText">#212121</color>
     <color name="colorTotal">#4c8c4a</color>
-    <color name="colorSurface">@android:color/white</color>
+    <color name="colorOnSurface">@android:color/white</color>
     <color name="colorTransparent">#00FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
