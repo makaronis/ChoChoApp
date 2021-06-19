@@ -9,5 +9,6 @@ interface AuthRepository {
     suspend fun signInEmail(email: String, password: String): AuthResult
     suspend fun sendEmailVerification()
     suspend fun addUserToDb(user: UserInfo): Boolean
+    suspend fun sendEmailForForgotPassword(email: String)
     fun getCurrentUser(): UserInfo?
 }

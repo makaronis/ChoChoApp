@@ -1,6 +1,7 @@
 package com.makaroni.chocho.features.account.domain
 
 import android.util.Log
+import com.google.firebase.auth.ActionCodeSettings
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -73,12 +74,28 @@ class FirebaseAuthRepositoryImpl : AuthRepository {
         }
 
     override suspend fun sendEmailVerification() {
-        firebaseAuth.currentUser?.sendEmailVerification()?.addOnCompleteListener { task ->
+        val codeSettings = ActionCodeSettings.newBuilder().apply {
+//            url = "makaroni://chocho/verification"
+            url = "https://trains-app-63c25.firebaseapp.com/${firebaseAuth.currentUser?.uid}/auth/action?mode=action&oobCode=code"
+//            handleCodeInApp = true
+            setAndroidPackageName("com.makaroni.chocho",true,null)
+        }.build()
+        firebaseAuth.currentUser?.sendEmailVerification(codeSettings)?.addOnCompleteListener { task ->
             if (task.isSuccessful) {
 
             } else {
-
+                Log.e("TAG",task.exception?.message.toString(),task.exception)
             }
+        }
+    }
+
+    override suspend fun sendEmailForForgotPassword(email: String){
+        val codeSettings = ActionCodeSettings.newBuilder().apply {
+            url = "test"
+            setAndroidPackageName("com.makaroni.chocho",true,null)
+        }.build()
+        firebaseAuth.sendPasswordResetEmail(email,codeSettings).addOnCompleteListener {
+
         }
     }
 

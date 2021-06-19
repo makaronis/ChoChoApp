@@ -5,9 +5,9 @@
     app:startDestination="@id/authFragment">
 
     <fragment
-        android:id="@+id/authFragment"
-        android:name="com.makaroni.chocho.features.account.presentation.AuthFragment"
-        android:label="AuthFragment" >
+        android:id="@+id/authFragmentSignUp"
+        android:name="com.makaroni.chocho.features.account.presentation.AuthSignUpFragment"
+        android:label="AuthFragmentSignUp">
         <action
             android:id="@+id/action_authFragment_to_authVerificationFragment"
             app:destination="@id/authVerificationFragment" />
@@ -16,4 +16,19 @@
         android:id="@+id/authVerificationFragment"
         android:name="com.makaroni.chocho.features.account.presentation.AuthVerificationFragment"
         android:label="AuthVerificationFragment" />
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.makaroni.chocho.features.account.presentation.AuthFragment"
+        android:label="AuthFragment" >
+        <action
+            android:id="@+id/action_authFragment_to_authFragmentSignUp"
+            app:destination="@id/authFragmentSignUp" />
+        <action
+            android:id="@+id/action_authFragment_to_authSignInFragment"
+            app:destination="@id/authSignInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authSignInFragment"
+        android:name="com.makaroni.chocho.features.account.presentation.AuthSignInFragment"
+        android:label="AuthSignInFragment" />
 </navigation>

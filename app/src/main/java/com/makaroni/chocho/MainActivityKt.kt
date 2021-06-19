@@ -1,6 +1,7 @@
 package com.makaroni.chocho
 
 import android.content.ContentValues
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.dynamiclinks.ktx.dynamicLinks
 import com.google.firebase.ktx.Firebase
 import com.makaroni.chocho.api.FirestoreManager
 import com.makaroni.chocho.data.TrainsContract
@@ -35,6 +37,23 @@ class MainActivityKt : FragmentActivity() {
         auth = Firebase.auth
         val currentUser = auth.currentUser
         Log.d(TAG,"currentUser=$currentUser")
+        Firebase.dynamicLinks
+            .getDynamicLink(intent)
+            .addOnSuccessListener(this) { pendingDynamicLinkData ->
+                // Get deep link from result (may be null if no link is found)
+                var deepLink: Uri? = null
+                if (pendingDynamicLinkData != null) {
+                    deepLink = pendingDynamicLinkData.link
+                }
+
+                // Handle the deep link. For example, open the linked
+                // content, or apply promotional credit to the user's
+                // account.
+                // ...
+
+                // ...
+            }
+            .addOnFailureListener(this) { e -> Log.w(TAG, "getDynamicLink:onFailure", e) }
     }
 
     fun subscribeToolbarLeadingButton(

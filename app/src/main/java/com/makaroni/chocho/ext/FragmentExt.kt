@@ -15,7 +15,8 @@ fun Fragment.showSnackbar(view: View, data: UiEvent.ShowSnackbar) {
 }
 
 fun Fragment.showErrorSnackbar(view: View, data: UiEvent.Error) {
-    val bar = Snackbar.make(view, data.msg.id, data.duration)
+    val text = data.exception?.message ?: getString(data.msg.id)
+    val bar = Snackbar.make(view, text, data.duration)
     bar.view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorError))
     bar.show()
 }

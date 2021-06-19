@@ -14,9 +14,6 @@
             android:id="@+id/action_menuFragment_to_editorFragment"
             app:destination="@id/editorFragment" />
         <action
-            android:id="@+id/action_menuFragment_to_authParentFragment"
-            app:destination="@id/authParentFragment" />
-        <action
             android:id="@+id/action_menuFragment_to_authGraph"
             app:destination="@id/navigation_auth"/>
     </fragment>
@@ -24,11 +21,6 @@
         android:id="@+id/editorFragment"
         android:name="com.makaroni.chocho.ui.editor.EditorFragment"
         android:label="EditorFragment" />
-
-    <fragment
-        android:id="@+id/authParentFragment"
-        android:name="com.makaroni.chocho.features.account.presentation.AuthParentFragment"
-        android:label="AuthParentFragment" />
 
 
 </navigation>

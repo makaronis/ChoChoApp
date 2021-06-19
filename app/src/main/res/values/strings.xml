@@ -43,9 +43,17 @@
     <string name="add_new_model">Add new model</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+
     <string name="signup">Sign Up</string>
     <string name="auth_error_password">Password length must be at least 6 symbols</string>
     <string name="auth_error_email">Email is not valid</string>
+    <string name="auth_verification_title">Check your inbox</string>
+    <string name="auth_verification_msg">You have been sent email with verification link</string>
+    <string name="ok">OK</string>
+    <string name="auth_confirm_password">Confirm password</string>
+    <string name="name">Name</string>
+    <string name="sign_in">Sign in</string>
+    <string name="auth_error_password_not_same">Passwords do not match</string>
 
 
 </resources>

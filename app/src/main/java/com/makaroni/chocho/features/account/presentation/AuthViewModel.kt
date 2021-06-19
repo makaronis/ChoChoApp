@@ -1,8 +1,12 @@
 package com.makaroni.chocho.features.account.presentation
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.AuthCredential
 import com.makaroni.chocho.R
 import com.makaroni.chocho.common.data.ResId
@@ -19,21 +23,32 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(private val repo: AuthRepository) : ViewModel() {
+class AuthViewModel @Inject constructor(
+    private val repo: AuthRepository,
+    private val appContext: Application
+) : ViewModel() {
 
     private val eventChannel = Channel<UiEvent>(Channel.BUFFERED)
     val eventsFlow = eventChannel.receiveAsFlow()
 
     val uiState = MutableStateFlow<UiState<Nothing>>(UiState.Idle)
 
-    var password: String = ""
-    var email: String = ""
+    var password: String = "loki999"
+    var passwordConfirm: String = "loki999"
+    var email: String = "kokiys@yandex.ru"
+
+    val googleSignInClient: GoogleSignInClient
 
     init {
-        viewModelScope.launch {
-//            delay(2_000)
-//            uiState.value = UiState.
-        }
+        val options = getSignInOptions()
+        googleSignInClient = GoogleSignIn.getClient(appContext, options)
+    }
+
+    private fun getSignInOptions(): GoogleSignInOptions {
+        return GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("331283844427-7cirgci61kpfqjqt4h6eqtbnffbhutvi.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
     }
 
     fun signInWithGoogle(credentials: AuthCredential) {
@@ -57,10 +72,14 @@ class AuthViewModel @Inject constructor(private val repo: AuthRepository) : View
                 handleAuthResult(result)
             } catch (e: Exception) {
                 uiState.value = UiState.Idle
-                eventChannel.trySend(UiEvent.Error())
+                eventChannel.trySend(UiEvent.Error(exception = e))
                 Log.e("TAG", e.message.toString(), e)
             }
         }
+    }
+
+    fun forgotPassword(){
+
     }
 
     private fun handleAuthResult(result: com.makaroni.chocho.features.account.data.AuthResult) {
@@ -77,9 +96,14 @@ class AuthViewModel @Inject constructor(private val repo: AuthRepository) : View
             when (it) {
                 AuthSideEffect.VerifyEmail -> handleVerifyEmail()
                 AuthSideEffect.PushToFirebase -> pushToDb(user)
+                AuthSideEffect.Succeed -> navigateNext()
             }
         }
 
+    private fun navigateNext() = viewModelScope.launch {
+        //TODO navigate to collection fragment
+//        eventChannel.send(UiEvent.NavigateTo(R.id.collection))
+    }
 
     private fun pushToDb(userInfo: UserInfo) {
         viewModelScope.launch {
@@ -93,6 +117,8 @@ class AuthViewModel @Inject constructor(private val repo: AuthRepository) : View
     }
 
     fun validatePassword(): Boolean = password.contains(Regex(passwordPattern))
+
+    fun validateNewPassword() = validatePassword() && password == passwordConfirm
 
     fun validateEmail(): Boolean = email.contains(Regex(emailPattern))
 

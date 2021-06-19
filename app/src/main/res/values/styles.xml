@@ -11,6 +11,7 @@
         <item name="colorControlHighlight">@color/colorPrimaryDarkDark</item>
         <item name="android:textViewStyle">@style/AppTextViewStyle</item>
         <item name="toolbarStyle">@style/ToolbarStyle</item>
+        <item name="shapeAppearanceSmallComponent">@style/SmallComponentShape</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -55,6 +56,11 @@
     <style name="RoundedImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">25%</item>
+    </style>
+
+    <style name="SmallComponentShape" parent="">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">19%</item>
     </style>
 
     <style name="EditorTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.makaroni.chocho">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:name=".ChoChoApplication"
@@ -16,31 +17,38 @@
             android:name="com.makaroni.chocho.MainActivityKt"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
                 <category android:name="android.intent.category.LAUNCHER" />
+                <data
+                    android:host="choco.page.link"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.makaroni.chocho.EditorActivity"
-            android:parentActivityName="com.makaroni.chocho.MainActivity" >
+            android:parentActivityName="com.makaroni.chocho.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.makaroni.chocho.MainActivity" />
         </activity>
         <activity
             android:name="com.makaroni.chocho.ListActivity"
-            android:parentActivityName="com.makaroni.chocho.MainActivity" >
+            android:parentActivityName="com.makaroni.chocho.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.makaroni.chocho.MainActivity" />
         </activity>
         <activity
             android:name="com.makaroni.chocho.SearchActivity"
-            android:parentActivityName="com.makaroni.chocho.MainActivity" >
+            android:parentActivityName="com.makaroni.chocho.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.makaroni.chocho.MainActivity" />
         </activity>
+
         <provider
             android:name="com.makaroni.chocho.data.TrainsProvider"
             android:authorities="com.makaroni.chocho"
