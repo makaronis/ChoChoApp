@@ -1,6 +1,6 @@
 package com.makaroni.chocho;
 
-import android.app.AlertDialog;
+
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +25,7 @@ import android.widget.Toast;
 import android.content.CursorLoader;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
@@ -432,8 +433,27 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
 
+//    @Override
+//    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+//        String[] projection = {
+//                "i._id as " +
+//                        TrainsContract.TrainsEntry.COLUMN_ID ,
+//                TrainsContract.TrainsEntry.COLUMN_TYPE,
+//                TrainsContract.TrainsEntry.COLUMN_SUBTYPE,
+//                TrainsContract.TrainsEntry.COLUMN_MODEL,
+//                TrainsContract.TrainsEntry.COLUMN_COMPANY,
+//                TrainsContract.TrainsEntry.COLUMN_MANUFACTURER,
+//                TrainsContract.TrainsEntry.COLUMN_ARTICLE,
+//                TrainsContract.TrainsEntry.COLUMN_NOTE,
+//                TrainsContract.TrainsEntry.COLUMN_IMAGE
+//        };
+//        return new CursorLoader(this, mCurrentTrain, projection, null, null, null);
+//    }
+//
+
+
     @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         String[] projection = {
                 "i._id as " +
                         TrainsContract.TrainsEntry.COLUMN_ID ,
@@ -455,22 +475,27 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             return;
         }
         if (cursor.moveToFirst()){
-            byte[] byteArray = cursor.getBlob(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_IMAGE));
-            Bitmap bm = BitmapFactory.decodeByteArray(byteArray, 0 ,byteArray.length);
-            imageValue = bm ;
-            imageV.setImageBitmap(bm);
-            setupSpinner((cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_TYPE))),
-                    (cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_SUBTYPE))));
-
-            modelET.setText(cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_MODEL)));
-            companyET.setText(cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_COMPANY)));
-            articleET.setText(cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_ARTICLE)));
-            manufacturerET.setText(cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_MANUFACTURER)));
-            noteET.setText(cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_NOTE)));
+//            byte[] byteArray = cursor.getBlob(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_IMAGE));
+//            Bitmap bm = BitmapFactory.decodeByteArray(byteArray, 0 ,byteArray.length);
+//            imageValue = bm ;
+//            imageV.setImageBitmap(bm);
+//            setupSpinner((cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_TYPE))),
+//                    (cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_SUBTYPE))));
+//
+//            modelET.setText(cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_MODEL)));
+//            companyET.setText(cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_COMPANY)));
+//            articleET.setText(cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_ARTICLE)));
+//            manufacturerET.setText(cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_MANUFACTURER)));
+//            noteET.setText(cursor.getString(cursor.getColumnIndex(TrainsContract.TrainsEntry.COLUMN_NOTE)));
         }
     }
     @Override
     public void onLoaderReset(android.content.Loader<Cursor> loader) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }
