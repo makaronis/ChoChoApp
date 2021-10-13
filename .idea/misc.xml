@@ -6,8 +6,14 @@
         <entry key="../../../../layout/compose-model-1634157643926.xml" value="0.4007295915613422" />
         <entry key="../../../../layout/compose-model-1634157643948.xml" value="0.1398148148148148" />
         <entry key="../../../../layout/compose-model-1634158653782.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1634160061303.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1634160565317.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1634162665416.xml" value="0.7580467989998906" />
+        <entry key="../../../../layout/compose-model-1634162665451.xml" value="0.18618042226487524" />
         <entry key="app/src/main/res/drawable/ic_google_logo.xml" value="0.1398148148148148" />
         <entry key="app/src/main/res/layout/fragment_auth.xml" value="0.32656374415344797" />
+        <entry key="app/src/main/res/layout/fragment_auth_signin.xml" value="0.2753623188405797" />
+        <entry key="app/src/main/res/layout/fragment_collection.xml" value="0.2753623188405797" />
       </map>
     </option>
   </component>

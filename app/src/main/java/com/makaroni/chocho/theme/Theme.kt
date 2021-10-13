@@ -33,7 +33,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun AppTheme(
+fun TrainsTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable() () -> Unit
 ) {

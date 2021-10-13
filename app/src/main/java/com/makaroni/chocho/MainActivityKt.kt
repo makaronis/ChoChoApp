@@ -1,10 +1,12 @@
 package com.makaroni.chocho
 
 import android.content.ContentValues
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.compose.setContent
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
@@ -18,6 +20,7 @@ import com.makaroni.chocho.data.TrainsContract
 import com.makaroni.chocho.data.db.TrainModel
 import com.makaroni.chocho.data.model.CollectionType
 import com.makaroni.chocho.databinding.ActivityMainBinding
+import com.makaroni.chocho.utils.rememberWindowSizeClass
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
 
@@ -30,13 +33,21 @@ class MainActivityKt : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(activityBinding.root)
+//        activityBinding = ActivityMainBinding.inflate(layoutInflater)
+//        setContentView(activityBinding.root)
         putDummy()
         fireStoreTest()
         auth = Firebase.auth
         val currentUser = auth.currentUser
+        firebaseMethod(intent)
         Log.d(TAG,"currentUser=$currentUser")
+        setContent {
+            val windowSizeClass = rememberWindowSizeClass()
+            TrainsApp(windowSize = windowSizeClass)
+        }
+    }
+
+    fun firebaseMethod(intent:Intent){
         Firebase.dynamicLinks
             .getDynamicLink(intent)
             .addOnSuccessListener(this) { pendingDynamicLinkData ->

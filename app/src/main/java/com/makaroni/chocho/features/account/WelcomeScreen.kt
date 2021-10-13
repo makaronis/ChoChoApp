@@ -10,22 +10,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.makaroni.chocho.R
 import com.makaroni.chocho.features.account.presentation.AuthViewModel
-import com.makaroni.chocho.theme.AppTheme
 import com.makaroni.chocho.theme.TrainsTheme
 import com.makaroni.chocho.theme.Typography
 
 @Composable
-fun AuthScreen(viewModel: AuthViewModel) {
-
+fun WelcomeScreen(viewModel: AuthViewModel) {
+    WelcomeScreen()
 }
 
 @Composable
-fun AuthScreen() {
+fun WelcomeScreen() {
     Scaffold(modifier = Modifier) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -42,7 +40,11 @@ fun AuthScreen() {
 @Composable
 fun WelcomeBlock() {
     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-        Image(painter = painterResource(R.drawable.ic_train), contentDescription = null)
+        Image(
+            modifier = Modifier.size(150.dp),
+            painter = painterResource(R.drawable.ic_train),
+            contentDescription = null
+        )
         Text(modifier = Modifier, text = "Welcome!", style = Typography.h2)
     }
 }
@@ -63,6 +65,7 @@ fun GoogleButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
     OutlinedButton(
         modifier = modifier.width(TrainsTheme.dimens.buttonWideWidth),
         onClick = onClick,
+        border = ButtonDefaults.outlinedBorder.copy(width = 3.dp),
         shape = CutCornerShape(15)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -116,7 +119,7 @@ fun TrainsWideTextButton(modifier: Modifier = Modifier, text: String, onClick: (
 @Composable
 @Preview
 fun WelcomeBlockPreview() {
-    AppTheme {
+    TrainsTheme {
         WelcomeBlock()
     }
 }
@@ -124,7 +127,7 @@ fun WelcomeBlockPreview() {
 @Composable
 @Preview
 fun ButtonsBlockPreview() {
-    AppTheme {
+    TrainsTheme {
         ButtonsBlock()
     }
 }
@@ -133,7 +136,7 @@ fun ButtonsBlockPreview() {
 @Composable
 @Preview
 fun AuthScreenPreview() {
-    AppTheme {
-        AuthScreen()
+    TrainsTheme {
+        WelcomeScreen()
     }
 }
