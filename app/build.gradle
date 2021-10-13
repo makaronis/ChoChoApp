@@ -40,10 +40,15 @@ android {
     }
     buildFeatures {
         viewBinding true
+        compose true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.0.4'
     }
 
     kotlinOptions {
@@ -96,15 +101,16 @@ dependencies {
     //ViewBinding delegate
     implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.4.6'
 
-    implementation("androidx.compose.ui:ui:1.0.3")
+    implementation("androidx.compose.ui:ui:$compose_version")
     // Tooling support (Previews, etc.)
-    implementation('androidx.compose.ui:ui-tooling:1.0.3')
+    implementation("androidx.compose.ui:ui-tooling:$compose_version")
     // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
-    implementation('androidx.compose.foundation:foundation:1.0.3')
+    implementation("androidx.compose.foundation:foundation:$compose_version")
     // Material Design
-    implementation('androidx.compose.material:material:1.0.3')
+    implementation("androidx.compose.material:material:$compose_version")
     // Material design icons
-    implementation('androidx.compose.material:material-icons-core:1.0.3')
+    implementation("androidx.compose.material:material-icons-core:$compose_version")
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
     //Hilt
     implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0'
