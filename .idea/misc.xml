@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/fragment_auth.xml" value="0.27853260869565216" />
+        <entry key="../../../../layout/compose-model-1634157643926.xml" value="0.4007295915613422" />
+        <entry key="../../../../layout/compose-model-1634157643948.xml" value="0.1398148148148148" />
+        <entry key="../../../../layout/compose-model-1634158653782.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/ic_google_logo.xml" value="0.1398148148148148" />
+        <entry key="app/src/main/res/layout/fragment_auth.xml" value="0.32656374415344797" />
       </map>
     </option>
   </component>
