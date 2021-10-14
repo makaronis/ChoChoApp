@@ -1,10 +1,15 @@
 package com.makaroni.chocho.features.account
 
+import android.content.Intent
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,14 +21,29 @@ import com.makaroni.chocho.R
 import com.makaroni.chocho.features.account.presentation.AuthViewModel
 import com.makaroni.chocho.theme.TrainsTheme
 import com.makaroni.chocho.theme.Typography
+import timber.log.Timber
 
 @Composable
-fun WelcomeScreen(viewModel: AuthViewModel) {
-    WelcomeScreen()
+fun WelcomeScreen(
+    viewModel: AuthViewModel,
+    navigateToLogin: () -> Unit,
+    navigateToSignup: () -> Unit
+) {
+    WelcomeScreen(
+        navigateToLogin = navigateToLogin,
+        handleAuth = viewModel::handleGoogleAuthResult,
+        googleIntent = viewModel.googleSignInClient.signInIntent,
+        navigateToSignup = navigateToSignup,
+    )
 }
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(
+    navigateToLogin: () -> Unit,
+    handleAuth: (ActivityResult) -> Unit,
+    navigateToSignup: () -> Unit,
+    googleIntent: Intent
+) {
     Scaffold(modifier = Modifier) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -32,7 +52,12 @@ fun WelcomeScreen() {
         ) {
             WelcomeBlock()
             Spacer(modifier = Modifier.height(70.dp))
-            ButtonsBlock()
+            ButtonsBlock(
+                navigateToLogin = navigateToLogin,
+                navigateToSignup = navigateToSignup,
+                intent = googleIntent,
+                handleAuth = handleAuth
+            )
         }
     }
 }
@@ -50,21 +75,32 @@ fun WelcomeBlock() {
 }
 
 @Composable
-fun ButtonsBlock() {
+fun ButtonsBlock(
+    navigateToLogin: () -> Unit,
+    navigateToSignup: () -> Unit,
+    intent: Intent,
+    handleAuth: (ActivityResult) -> Unit
+) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        TrainsWideButton(text = "Sign up")
-        GoogleButton {
-
-        }
-        TrainsWideTextButton(text = "Log in")
+        TrainsWideButton(text = "Sign up", onClick = navigateToSignup)
+        GoogleButton(intent = intent, handleAuth = handleAuth)
+        TrainsWideTextButton(text = "Log in", onClick = navigateToLogin)
     }
 }
 
 @Composable
-fun GoogleButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
+fun GoogleButton(
+    modifier: Modifier = Modifier,
+    intent: Intent,
+    handleAuth: (ActivityResult) -> Unit
+) {
+    val openGoogleAuthActivity = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult(),
+        onResult = handleAuth
+    )
     OutlinedButton(
         modifier = modifier.width(TrainsTheme.dimens.buttonWideWidth),
-        onClick = onClick,
+        onClick = { openGoogleAuthActivity.launch(intent) },
         border = ButtonDefaults.outlinedBorder.copy(width = 3.dp),
         shape = CutCornerShape(15)
     ) {
@@ -128,7 +164,7 @@ fun WelcomeBlockPreview() {
 @Preview
 fun ButtonsBlockPreview() {
     TrainsTheme {
-        ButtonsBlock()
+//        ButtonsBlock()
     }
 }
 
@@ -137,6 +173,11 @@ fun ButtonsBlockPreview() {
 @Preview
 fun AuthScreenPreview() {
     TrainsTheme {
-        WelcomeScreen()
+        WelcomeScreen(
+            navigateToLogin = {},
+            navigateToSignup = {},
+            googleIntent = Intent(),
+            handleAuth = {}
+        )
     }
 }

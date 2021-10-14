@@ -2,16 +2,22 @@ package com.makaroni.chocho.features.account.presentation
 
 import android.app.Application
 import android.util.Log
+import androidx.activity.result.ActivityResult
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.GoogleAuthProvider
 import com.makaroni.chocho.R
 import com.makaroni.chocho.common.data.ResId
 import com.makaroni.chocho.common.data.UiEvent
 import com.makaroni.chocho.common.data.UiState
+import com.makaroni.chocho.features.account.data.AuthScreen
 import com.makaroni.chocho.features.account.data.AuthSideEffect
 import com.makaroni.chocho.features.account.data.UserInfo
 import com.makaroni.chocho.features.account.domain.AuthRepository
@@ -20,6 +26,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,6 +34,10 @@ class AuthViewModel @Inject constructor(
     private val repo: AuthRepository,
     private val appContext: Application
 ) : ViewModel() {
+
+
+    private val viewModelState =
+        MutableStateFlow(AuthViewModelState(isLoading = true, currentScreen = AuthScreen.WELCOME))
 
     private val eventChannel = Channel<UiEvent>(Channel.BUFFERED)
     val eventsFlow = eventChannel.receiveAsFlow()
@@ -36,6 +47,11 @@ class AuthViewModel @Inject constructor(
     var password: String = "loki999"
     var passwordConfirm: String = "loki999"
     var email: String = "kokiys@yandex.ru"
+
+    val nameState = mutableStateOf("")
+    val passwordState = mutableStateOf("")
+    val passwordConfirmState = mutableStateOf("")
+    val emailState = mutableStateOf("")
 
     val googleSignInClient: GoogleSignInClient
 
@@ -51,18 +67,39 @@ class AuthViewModel @Inject constructor(
             .build()
     }
 
-    fun signInWithGoogle(credentials: AuthCredential) {
-        viewModelScope.launch {
-            uiState.value = UiState.Loading
-            try {
-                val result = repo.signInGoogle(credentials)
-                handleAuthResult(result)
-            } catch (e: Exception) {
-                uiState.value = UiState.Idle
-                eventChannel.trySend(UiEvent.Error())
-                Log.e("TAG", e.message.toString(), e)
+    fun handleGoogleAuthResult(result: ActivityResult) {
+        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+        try {
+            val googleSignInAccount = task.getResult(ApiException::class.java)
+            if (googleSignInAccount != null) {
+                handleGoogleSuccess(googleSignInAccount)
             }
+        } catch (e: ApiException) {
+            handleGoogleFailure(e)
         }
+    }
+
+    private fun handleGoogleSuccess(account: GoogleSignInAccount) = viewModelScope.launch {
+        val googleTokenId = account.idToken
+        val googleAuthCredential = GoogleAuthProvider.getCredential(googleTokenId, null)
+        uiState.value = UiState.Loading
+        try {
+            val result = repo.signInGoogle(googleAuthCredential)
+            handleAuthResult(result)
+        } catch (e: Exception) {
+            uiState.value = UiState.Idle
+            eventChannel.trySend(UiEvent.Error())
+            Timber.e(e, e.message.toString())
+        }
+    }
+
+
+    fun signInWithGoogle(credentials: AuthCredential) {
+
+    }
+
+    private fun handleGoogleFailure(e: ApiException) {
+        Timber.e(e, e.message)
     }
 
     fun signUpWithEmailPassword() {
@@ -78,7 +115,7 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun forgotPassword(){
+    fun forgotPassword() {
 
     }
 
@@ -129,6 +166,9 @@ class AuthViewModel @Inject constructor(
         }
     }
 
+    fun onBackPressed() {
+
+    }
 
     private val passwordPattern = "(?=.*[0-9a-zA-Z]).{6,}"
     private val emailPattern =

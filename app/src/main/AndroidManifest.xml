@@ -16,6 +16,7 @@
         <activity
             android:name="com.makaroni.chocho.MainActivityKt"
             android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

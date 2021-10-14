@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.compose.setContent
 import androidx.appcompat.widget.Toolbar
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -31,15 +32,16 @@ class MainActivityKt : FragmentActivity() {
 
     private lateinit var auth: FirebaseAuth
 
+    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        activityBinding = ActivityMainBinding.inflate(layoutInflater)
 //        setContentView(activityBinding.root)
-        putDummy()
-        fireStoreTest()
+//        putDummy()
+//        fireStoreTest()
         auth = Firebase.auth
         val currentUser = auth.currentUser
-        firebaseMethod(intent)
+//        firebaseMethod(intent)
         Log.d(TAG,"currentUser=$currentUser")
         setContent {
             val windowSizeClass = rememberWindowSizeClass()

@@ -2,25 +2,31 @@ package com.makaroni.chocho
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import com.makaroni.chocho.TrainsDestinations.LOGIN_ROUTE
+import com.makaroni.chocho.TrainsDestinations.LOGIN_SCREEN
 
 object TrainsDestinations {
-    const val WELCOME_ROUTE = "welcome"
-    const val LOGIN_ROUTE = "login"
-    const val SIGN_UP_ROUTE = "signUp"
+    const val AUTH_ROUTE = "auth"
+    const val WELCOME_SCREEN = "welcome"
+    const val LOGIN_SCREEN = "login"
+    const val SIGN_UP_SCREEN = "signUp"
 }
 
-class TrainsAppNavigationActions(navController: NavController) {
+class TrainsAppRouter(navController: NavController) {
+    val navigateBack: () -> Unit = {
+        navController.popBackStack()
+        Unit
+    }
+
     val navigateToLogin: () -> Unit = {
-        navController.navigate(LOGIN_ROUTE)
+        navController.navigate(LOGIN_SCREEN)
     }
 
     val navigateToSignUp: () -> Unit = {
-        navController.navigate(TrainsDestinations.SIGN_UP_ROUTE)
+        navController.navigate(TrainsDestinations.SIGN_UP_SCREEN)
     }
 
     val navigateToWelcome: () -> Unit = {
-        navController.navigate(TrainsDestinations.WELCOME_ROUTE) {
+        navController.navigate(TrainsDestinations.AUTH_ROUTE) {
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }

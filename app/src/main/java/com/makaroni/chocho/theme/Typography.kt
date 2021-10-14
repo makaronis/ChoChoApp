@@ -24,6 +24,11 @@ val Typography = Typography(
         fontWeight = FontWeight.Bold,
         fontSize = 60.sp
     ),
+    h4 = TextStyle(
+        fontFamily = Montserrat,
+        fontWeight = FontWeight.Normal,
+        fontSize = 34.sp
+    ),
     button = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.W500,

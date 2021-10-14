@@ -8,12 +8,26 @@
         <entry key="../../../../layout/compose-model-1634158653782.xml" value="0.25" />
         <entry key="../../../../layout/compose-model-1634160061303.xml" value="0.25" />
         <entry key="../../../../layout/compose-model-1634160565317.xml" value="0.25" />
-        <entry key="../../../../layout/compose-model-1634162665416.xml" value="0.7580467989998906" />
+        <entry key="../../../../layout/compose-model-1634162665416.xml" value="0.2561375971386338" />
         <entry key="../../../../layout/compose-model-1634162665451.xml" value="0.18618042226487524" />
+        <entry key="../../../../layout/compose-model-1634164047459.xml" value="0.28619528619528617" />
+        <entry key="../../../../layout/compose-model-1634165995728.xml" value="0.13703703703703704" />
+        <entry key="../../../../layout/compose-model-1634232391130.xml" value="0.13518518518518519" />
+        <entry key="../../../../layout/compose-model-1634232458517.xml" value="0.13518518518518519" />
+        <entry key="../../../../layout/compose-model-1634246107658.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1634247805149.xml" value="0.13518518518518519" />
+        <entry key="../../../../layout/compose-model-1634248982874.xml" value="0.375" />
+        <entry key="../../../../layout/compose-model-1634249937004.xml" value="0.28703703703703703" />
+        <entry key="../../../../layout/compose-model-1634251208960.xml" value="0.311235325878607" />
         <entry key="app/src/main/res/drawable/ic_google_logo.xml" value="0.1398148148148148" />
+        <entry key="app/src/main/res/layout/cardview.xml" value="0.266304347826087" />
         <entry key="app/src/main/res/layout/fragment_auth.xml" value="0.32656374415344797" />
         <entry key="app/src/main/res/layout/fragment_auth_signin.xml" value="0.2753623188405797" />
+        <entry key="app/src/main/res/layout/fragment_auth_signup.xml" value="0.27355072463768115" />
+        <entry key="app/src/main/res/layout/fragment_auth_verification.xml" value="0.266304347826087" />
         <entry key="app/src/main/res/layout/fragment_collection.xml" value="0.2753623188405797" />
+        <entry key="app/src/main/res/layout/fragment_editor.xml" value="0.266304347826087" />
+        <entry key="app/src/main/res/layout/item_collection.xml" value="0.266304347826087" />
       </map>
     </option>
   </component>

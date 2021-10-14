@@ -1,5 +1,6 @@
 package com.makaroni.chocho
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
@@ -14,12 +15,14 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.makaroni.chocho.theme.ProvideDimens
 import com.makaroni.chocho.theme.TrainsTheme
 import com.makaroni.chocho.utils.WindowSize
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
+@ExperimentalAnimationApi
 @Composable
 fun TrainsApp(windowSize: WindowSize) {
     TrainsTheme {
@@ -30,11 +33,12 @@ fun TrainsApp(windowSize: WindowSize) {
                 systemUiController.setSystemBarsColor(Color.Transparent, darkIcons = darkIcons)
             }
 
-            val navController = rememberNavController()
+            val navController = rememberAnimatedNavController()
+            val navRouter = TrainsAppRouter(navController)
             val coroutineScope = rememberCoroutineScope()
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentRoute =
-                navBackStackEntry?.destination?.route ?: TrainsDestinations.WELCOME_ROUTE
+                navBackStackEntry?.destination?.route ?: TrainsDestinations.AUTH_ROUTE
 
             val isExpandedScreen = windowSize == WindowSize.Expanded
             val sizeAwareDrawerState = rememberSizeAwareDrawerState(isExpandedScreen)
@@ -54,10 +58,13 @@ fun TrainsApp(windowSize: WindowSize) {
                     if (isExpandedScreen) {
                         //TODO navRail for landscape
                     }
+                    Timber.v("TrainsApp")
                     TrainsNavGraph(
                         isExpandedScreen = isExpandedScreen,
                         navController = navController,
-                        openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } })
+                        navRouter = navRouter,
+                        openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } }
+                    )
                 }
             }
         }
