@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "331283844427-4499m8pjmi2nqh28uoj99nltavsvat3g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.makaroni.chocho",
+            "certificate_hash": "ff5cd6bece484fb86c8b53c8d7c2fbb7e39638c3"
+          }
+        },
+        {
           "client_id": "331283844427-n6r519gf9l9d9ekcjko5ffdd73efsknm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

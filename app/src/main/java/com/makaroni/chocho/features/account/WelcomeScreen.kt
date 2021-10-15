@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,13 +29,15 @@ import timber.log.Timber
 fun WelcomeScreen(
     viewModel: AuthViewModel,
     navigateToLogin: () -> Unit,
-    navigateToSignup: () -> Unit
+    navigateToSignup: () -> Unit,
+    navigateToCollection: () -> Unit,
 ) {
     WelcomeScreen(
         navigateToLogin = navigateToLogin,
         handleAuth = viewModel::handleGoogleAuthResult,
         googleIntent = viewModel.googleSignInClient.signInIntent,
         navigateToSignup = navigateToSignup,
+        navigateToCollection = navigateToCollection,
     )
 }
 
@@ -42,6 +46,7 @@ fun WelcomeScreen(
     navigateToLogin: () -> Unit,
     handleAuth: (ActivityResult) -> Unit,
     navigateToSignup: () -> Unit,
+    navigateToCollection: () -> Unit,
     googleIntent: Intent
 ) {
     Scaffold(modifier = Modifier) {
@@ -176,6 +181,7 @@ fun AuthScreenPreview() {
         WelcomeScreen(
             navigateToLogin = {},
             navigateToSignup = {},
+            navigateToCollection = {},
             googleIntent = Intent(),
             handleAuth = {}
         )

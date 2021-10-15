@@ -10,11 +10,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
-import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.makaroni.chocho.features.account.LoginScreen
 import com.makaroni.chocho.features.account.SignUpScreen
 import com.makaroni.chocho.features.account.WelcomeScreen
 import com.makaroni.chocho.features.account.presentation.AuthViewModel
+import com.makaroni.chocho.features.home.HomeScreen
 
 
 @ExperimentalAnimationApi
@@ -33,6 +33,7 @@ fun TrainsNavGraph(
         modifier = modifier
     ) {
         authGraph(navRouter)
+        collectionGraph(navRouter)
     }
 }
 
@@ -47,7 +48,8 @@ private fun NavGraphBuilder.authGraph(navRouter: TrainsAppRouter) {
             WelcomeScreen(
                 viewModel = viewModel,
                 navigateToLogin = navRouter.navigateToLogin,
-                navigateToSignup = navRouter.navigateToSignUp
+                navigateToSignup = navRouter.navigateToSignUp,
+                navigateToCollection = navRouter.navigateToCollection,
             )
         }
         composable(TrainsDestinations.LOGIN_SCREEN) {
@@ -57,6 +59,18 @@ private fun NavGraphBuilder.authGraph(navRouter: TrainsAppRouter) {
         composable(TrainsDestinations.SIGN_UP_SCREEN) {
             val viewModel = hiltViewModel<AuthViewModel>()
             SignUpScreen(viewModel = viewModel, navigateBack = navRouter.navigateBack)
+        }
+    }
+}
+
+@ExperimentalAnimationApi
+private fun NavGraphBuilder.collectionGraph(navRouter: TrainsAppRouter) {
+    navigation(
+        startDestination = TrainsDestinations.HOME_SCREEN,
+        route = TrainsDestinations.COLLECTION_ROUTE
+    ) {
+        composable(TrainsDestinations.HOME_SCREEN) {
+            HomeScreen()
         }
     }
 }

@@ -19,6 +19,7 @@ import com.makaroni.chocho.common.data.UiEvent
 import com.makaroni.chocho.common.data.UiState
 import com.makaroni.chocho.features.account.data.AuthScreen
 import com.makaroni.chocho.features.account.data.AuthSideEffect
+import com.makaroni.chocho.features.account.data.AuthViewModelState
 import com.makaroni.chocho.features.account.data.UserInfo
 import com.makaroni.chocho.features.account.domain.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -35,10 +36,6 @@ class AuthViewModel @Inject constructor(
     private val appContext: Application
 ) : ViewModel() {
 
-
-    private val viewModelState =
-        MutableStateFlow(AuthViewModelState(isLoading = true, currentScreen = AuthScreen.WELCOME))
-
     private val eventChannel = Channel<UiEvent>(Channel.BUFFERED)
     val eventsFlow = eventChannel.receiveAsFlow()
 
@@ -52,6 +49,8 @@ class AuthViewModel @Inject constructor(
     val passwordState = mutableStateOf("")
     val passwordConfirmState = mutableStateOf("")
     val emailState = mutableStateOf("")
+
+    val showHint = mutableStateOf(false)
 
     val googleSignInClient: GoogleSignInClient
 
@@ -68,6 +67,7 @@ class AuthViewModel @Inject constructor(
     }
 
     fun handleGoogleAuthResult(result: ActivityResult) {
+        Timber.v("handleGoogleAuthResult")
         val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
         try {
             val googleSignInAccount = task.getResult(ApiException::class.java)
@@ -80,6 +80,7 @@ class AuthViewModel @Inject constructor(
     }
 
     private fun handleGoogleSuccess(account: GoogleSignInAccount) = viewModelScope.launch {
+        Timber.v("handleGoogleSuccess")
         val googleTokenId = account.idToken
         val googleAuthCredential = GoogleAuthProvider.getCredential(googleTokenId, null)
         uiState.value = UiState.Loading
@@ -120,11 +121,13 @@ class AuthViewModel @Inject constructor(
     }
 
     private fun handleAuthResult(result: com.makaroni.chocho.features.account.data.AuthResult) {
+        Timber.v("handleAuthResult")
         if (result.user == null) {
             uiState.value = UiState.Error()
             return
         }
         uiState.value = UiState.Idle
+        Timber.v(result.toString())
         handleSideEffects(result.sideEffects, result.user)
     }
 
