@@ -12,14 +12,14 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalConfiguration
 
 private val DarkColorPalette = darkColors(
-    primary = Orange300,
-    primaryVariant = Purple700,
+    primary = Orange500,
+    primaryVariant = Orange300,
     secondary = Teal200
 )
 
 private val LightColorPalette = lightColors(
     primary = Orange500,
-    primaryVariant = Purple700,
+    primaryVariant = Orange300,
     secondary = Teal200
 
     /* Other default colors to override
