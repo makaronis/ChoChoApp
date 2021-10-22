@@ -10,6 +10,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalConfiguration
+import timber.log.Timber
 
 private val DarkColorPalette = darkColors(
     primary = Orange500,
@@ -43,7 +44,7 @@ fun TrainsTheme(
         LightColorPalette
     }
     val configuration = LocalConfiguration.current
-    Log.d("Theme", "screenWidthDp = ${configuration.screenWidthDp}")
+    Timber.d("screenWidthDp = " + configuration.screenWidthDp)
     val dimensions = when {
         configuration.screenWidthDp <= 340 -> smallDimensions
         configuration.screenWidthDp <= 390 -> mediumDimensions

@@ -10,6 +10,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.widget.Toolbar
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.core.view.GravityCompat
+import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +24,7 @@ import com.makaroni.chocho.data.model.CollectionType
 import com.makaroni.chocho.databinding.ActivityMainBinding
 import com.makaroni.chocho.utils.rememberWindowSizeClass
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import kotlin.random.Random
 
 @AndroidEntryPoint
@@ -42,7 +44,8 @@ class MainActivityKt : FragmentActivity() {
         auth = Firebase.auth
         val currentUser = auth.currentUser
 //        firebaseMethod(intent)
-        Log.d(TAG,"currentUser=$currentUser")
+        Timber.d("currentUser=$currentUser")
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             val windowSizeClass = rememberWindowSizeClass()
             TrainsApp(windowSize = windowSizeClass)

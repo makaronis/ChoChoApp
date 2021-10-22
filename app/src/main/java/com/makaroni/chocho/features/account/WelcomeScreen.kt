@@ -21,6 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.makaroni.chocho.R
 import com.makaroni.chocho.features.account.presentation.AuthViewModel
+import com.makaroni.chocho.features.common.presentation.GoogleButton
+import com.makaroni.chocho.features.common.presentation.TrainsWideButton
+import com.makaroni.chocho.features.common.presentation.TrainsWideTextButton
 import com.makaroni.chocho.theme.TrainsTheme
 import com.makaroni.chocho.theme.Typography
 import timber.log.Timber
@@ -93,69 +96,7 @@ fun ButtonsBlock(
     }
 }
 
-@Composable
-fun GoogleButton(
-    modifier: Modifier = Modifier,
-    intent: Intent,
-    handleAuth: (ActivityResult) -> Unit
-) {
-    val openGoogleAuthActivity = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.StartActivityForResult(),
-        onResult = handleAuth
-    )
-    OutlinedButton(
-        modifier = modifier.width(TrainsTheme.dimens.buttonWideWidth),
-        onClick = { openGoogleAuthActivity.launch(intent) },
-        border = ButtonDefaults.outlinedBorder.copy(width = 3.dp),
-        shape = CutCornerShape(15)
-    ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_google_logo),
-                contentDescription = null,
-                tint = Color.Unspecified
-            )
-            Text(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(start = 8.dp),
-                text = "Continue with Google".uppercase(),
-                color = MaterialTheme.colors.primary,
-                textAlign = TextAlign.Center,
-                style = Typography.button,
-            )
-        }
-    }
-}
 
-@Composable
-fun TrainsWideButton(modifier: Modifier = Modifier, text: String, onClick: () -> Unit = {}) {
-    Button(
-        modifier = modifier.width(TrainsTheme.dimens.buttonWideWidth),
-        shape = CutCornerShape(15),
-        colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
-        onClick = onClick
-    ) {
-        Text(text = text.uppercase(), textAlign = TextAlign.Center, style = Typography.button)
-    }
-}
-
-@Composable
-fun TrainsWideTextButton(modifier: Modifier = Modifier, text: String, onClick: () -> Unit = {}) {
-    TextButton(
-        modifier = modifier.width(TrainsTheme.dimens.buttonWideWidth),
-        shape = CutCornerShape(15),
-        colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
-        onClick = onClick
-    ) {
-        Text(
-            text = text.uppercase(),
-            textAlign = TextAlign.Center,
-            style = Typography.button,
-            color = MaterialTheme.colors.primary
-        )
-    }
-}
 
 @Composable
 @Preview

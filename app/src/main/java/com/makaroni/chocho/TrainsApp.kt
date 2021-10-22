@@ -12,9 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.insets.ProvideWindowInsets
-import com.google.accompanist.insets.navigationBarsPadding
-import com.google.accompanist.insets.statusBarsPadding
+import com.google.accompanist.insets.*
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.makaroni.chocho.theme.TrainsTheme
@@ -22,11 +20,12 @@ import com.makaroni.chocho.utils.WindowSize
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
+@ExperimentalAnimatedInsets
 @ExperimentalAnimationApi
 @Composable
 fun TrainsApp(windowSize: WindowSize) {
     TrainsTheme {
-        ProvideWindowInsets {
+        ProvideWindowInsets() {
             val systemUiController = rememberSystemUiController()
             val darkIcons = MaterialTheme.colors.isLight
             SideEffect {
@@ -54,6 +53,7 @@ fun TrainsApp(windowSize: WindowSize) {
                         .fillMaxSize()
                         .statusBarsPadding()
                         .navigationBarsPadding(bottom = false)
+                        .imePadding()
                 ) {
                     if (isExpandedScreen) {
                         //TODO navRail for landscape

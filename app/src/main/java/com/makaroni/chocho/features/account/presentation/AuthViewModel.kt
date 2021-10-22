@@ -111,7 +111,7 @@ class AuthViewModel @Inject constructor(
             } catch (e: Exception) {
                 uiState.value = UiState.Idle
                 eventChannel.trySend(UiEvent.Error(exception = e))
-                Log.e("TAG", e.message.toString(), e)
+                Timber.e(e, e.message.toString())
             }
         }
     }

@@ -1,7 +1,9 @@
 package com.makaroni.chocho.features.account
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -20,6 +22,7 @@ import com.makaroni.chocho.features.account.presentation.AuthViewModel
 import com.makaroni.chocho.features.common.presentation.BackArrowToolbar
 import com.makaroni.chocho.features.common.presentation.TrainsLogo
 import com.makaroni.chocho.features.common.presentation.TrainsTextField
+import com.makaroni.chocho.features.common.presentation.TrainsWideButton
 import com.makaroni.chocho.theme.TrainsTheme
 import com.makaroni.chocho.theme.Typography
 
@@ -34,11 +37,12 @@ fun LoginScreen(navigateBack: () -> Unit) {
     val password = remember { mutableStateOf("") }
     Scaffold(topBar = { BackArrowToolbar(navigateBack = navigateBack) }) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .horizontalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            TrainsLogo()
             Text(modifier = Modifier.padding(top = 8.dp), text = "Log in", style = Typography.h2)
             TrainsTextField(
                 modifier = Modifier.padding(top = 8.dp),
@@ -59,7 +63,6 @@ fun LoginScreen(navigateBack: () -> Unit) {
         }
     }
 }
-
 
 
 @Composable

@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
+import com.google.accompanist.insets.ExperimentalAnimatedInsets
 import com.makaroni.chocho.features.account.LoginScreen
 import com.makaroni.chocho.features.account.SignUpScreen
 import com.makaroni.chocho.features.account.WelcomeScreen
@@ -17,6 +18,7 @@ import com.makaroni.chocho.features.account.presentation.AuthViewModel
 import com.makaroni.chocho.features.home.HomeScreen
 
 
+@ExperimentalAnimatedInsets
 @ExperimentalAnimationApi
 @Composable
 fun TrainsNavGraph(
@@ -37,6 +39,7 @@ fun TrainsNavGraph(
     }
 }
 
+@ExperimentalAnimatedInsets
 @ExperimentalAnimationApi
 private fun NavGraphBuilder.authGraph(navRouter: TrainsAppRouter) {
     navigation(
