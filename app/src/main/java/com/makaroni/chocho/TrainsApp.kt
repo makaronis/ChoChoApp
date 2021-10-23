@@ -20,7 +20,6 @@ import com.makaroni.chocho.utils.WindowSize
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-@ExperimentalAnimatedInsets
 @ExperimentalAnimationApi
 @Composable
 fun TrainsApp(windowSize: WindowSize) {

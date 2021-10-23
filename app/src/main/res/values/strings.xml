@@ -62,7 +62,7 @@
     <string name="auth_create_account">Create Account</string>
     <string name="auth_verification_title">Check your inbox</string>
     <string name="auth_verification_msg">You have been sent email with verification link</string>
-
+    <string name="auth_name_error">Name must be more than 1 symbol</string>
 
 
 </resources>

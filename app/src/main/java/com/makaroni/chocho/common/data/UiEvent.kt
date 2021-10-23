@@ -11,5 +11,5 @@ sealed interface UiEvent {
         val duration: Int = Snackbar.LENGTH_SHORT
     ) : UiEvent
 
-    data class NavigateTo(val id: ResId) : UiEvent
+    data class NavigateTo(val route: String) : UiEvent
 }

@@ -18,7 +18,6 @@ import com.makaroni.chocho.features.account.presentation.AuthViewModel
 import com.makaroni.chocho.features.home.HomeScreen
 
 
-@ExperimentalAnimatedInsets
 @ExperimentalAnimationApi
 @Composable
 fun TrainsNavGraph(
@@ -39,7 +38,6 @@ fun TrainsNavGraph(
     }
 }
 
-@ExperimentalAnimatedInsets
 @ExperimentalAnimationApi
 private fun NavGraphBuilder.authGraph(navRouter: TrainsAppRouter) {
     navigation(
@@ -61,7 +59,11 @@ private fun NavGraphBuilder.authGraph(navRouter: TrainsAppRouter) {
         }
         composable(TrainsDestinations.SIGN_UP_SCREEN) {
             val viewModel = hiltViewModel<AuthViewModel>()
-            SignUpScreen(viewModel = viewModel, navigateBack = navRouter.navigateBack)
+            SignUpScreen(
+                viewModel = viewModel,
+                navigateBack = navRouter.navigateBack,
+                navigateToCollection = navRouter.navigateToCollection
+            )
         }
     }
 }

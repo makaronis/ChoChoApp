@@ -60,23 +60,23 @@ class AuthSignUpFragment : Fragment(R.layout.fragment_auth_signup) {
 
     private fun subscribeUi() {
         fragmentBinding.apply {
-            etEmail.setText(viewModel.email)
-            etPassword.setText(viewModel.password)
-            etPasswordConfirm.setText(viewModel.passwordConfirm)
-
-            btnSignUp.setOnClickListener { signUpWithEmailPassword() }
-            etEmail.doOnTextChanged { text, _, _, _ ->
-                ltEmail.error = null
-                viewModel.email = text.toString()
-            }
-            etPassword.doOnTextChanged { text, _, _, _ ->
-                ltPassword.error = null
-                viewModel.password = text.toString()
-            }
-            etPasswordConfirm.doOnTextChanged { text, _, _, _ ->
-                ltPasswordConfirm.error = null
-                viewModel.passwordConfirm = text.toString()
-            }
+//            etEmail.setText(viewModel.email)
+//            etPassword.setText(viewModel.password)
+//            etPasswordConfirm.setText(viewModel.passwordConfirm)
+//
+//            btnSignUp.setOnClickListener { signUpWithEmailPassword() }
+//            etEmail.doOnTextChanged { text, _, _, _ ->
+//                ltEmail.error = null
+//                viewModel.email = text.toString()
+//            }
+//            etPassword.doOnTextChanged { text, _, _, _ ->
+//                ltPassword.error = null
+//                viewModel.password = text.toString()
+//            }
+//            etPasswordConfirm.doOnTextChanged { text, _, _, _ ->
+//                ltPasswordConfirm.error = null
+//                viewModel.passwordConfirm = text.toString()
+//            }
         }
     }
 
@@ -98,7 +98,7 @@ class AuthSignUpFragment : Fragment(R.layout.fragment_auth_signup) {
 
     private fun handleUiEvent(event: UiEvent) {
         when (event) {
-            is UiEvent.NavigateTo -> navigateTo(event.id)
+//            is UiEvent.NavigateTo -> navigateTo(event.route)
             is UiEvent.Error -> showErrorSnackbar(fragmentBinding.root, event)
             is UiEvent.ShowSnackbar -> showSnackbar(fragmentBinding.root, event)
         }
@@ -113,26 +113,26 @@ class AuthSignUpFragment : Fragment(R.layout.fragment_auth_signup) {
     }
 
     private fun signUpWithEmailPassword() {
-        val isPasswordValid = viewModel.validatePassword()
-        val isPasswordTheSame = viewModel.validateNewPassword()
-        val isEmailValid = viewModel.validateEmail()
-        val isFieldsValid = isEmailValid && isPasswordValid && isPasswordTheSame
-
-        if (!isPasswordValid) {
-            fragmentBinding.ltPassword.error = getString(R.string.auth_error_password)
-        }
-
-        if (!isEmailValid) {
-            fragmentBinding.ltEmail.error = getString(R.string.auth_error_email)
-        }
-
-        if (!isPasswordTheSame){
-            fragmentBinding.ltPasswordConfirm.error = getString(R.string.auth_error_password_not_same)
-        }
-
-        if (isFieldsValid) {
-            viewModel.signUpWithEmailPassword()
-        }
+//        val isPasswordValid = viewModel.validatePassword()
+//        val isPasswordTheSame = viewModel.validateNewPassword()
+//        val isEmailValid = viewModel.validateEmail()
+//        val isFieldsValid = isEmailValid && isPasswordValid && isPasswordTheSame
+//
+//        if (!isPasswordValid) {
+//            fragmentBinding.ltPassword.error = getString(R.string.auth_error_password)
+//        }
+//
+//        if (!isEmailValid) {
+//            fragmentBinding.ltEmail.error = getString(R.string.auth_error_email)
+//        }
+//
+//        if (!isPasswordTheSame){
+//            fragmentBinding.ltPasswordConfirm.error = getString(R.string.auth_error_password_not_same)
+//        }
+//
+//        if (isFieldsValid) {
+//            viewModel.signUpWithEmailPassword()
+//        }
     }
 
     private fun signInWithGoogle() {
