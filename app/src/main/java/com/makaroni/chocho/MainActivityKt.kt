@@ -34,7 +34,7 @@ class MainActivityKt : FragmentActivity() {
 
     private lateinit var auth: FirebaseAuth
 
-    @ExperimentalAnimationApi
+    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        activityBinding = ActivityMainBinding.inflate(layoutInflater)

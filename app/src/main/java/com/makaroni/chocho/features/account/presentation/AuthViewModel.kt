@@ -23,6 +23,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -252,6 +253,7 @@ class AuthViewModel @Inject constructor(
 
 
     private fun validateFields() { //todo refactor to combine flow operator
+
         val items = inputItems.value.values
         val correctFields = items.filter { !it.isInvalid && it.text.isNotEmpty() }
         isFieldsValid.value = correctFields.size == items.size
