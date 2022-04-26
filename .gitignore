@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+/buildSrc/build/generated-sources/kotlin-dsl-plugins/kotlin/AndroidConfigPlugin.kt

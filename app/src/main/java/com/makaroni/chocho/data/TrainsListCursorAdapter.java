@@ -14,8 +14,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.makaroni.chocho.EditorActivity;
-import com.makaroni.chocho.HelperMethods;
 import com.makaroni.chocho.R;
 
 import static androidx.core.content.ContextCompat.startActivity;

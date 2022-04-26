@@ -30,20 +30,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.makaroni.chocho.EditorActivity"
-            android:parentActivityName="com.makaroni.chocho.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.makaroni.chocho.MainActivity" />
-        </activity>
-        <activity
-            android:name="com.makaroni.chocho.ListActivity"
-            android:parentActivityName="com.makaroni.chocho.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.makaroni.chocho.MainActivity" />
-        </activity>
-        <activity
             android:name="com.makaroni.chocho.SearchActivity"
             android:parentActivityName="com.makaroni.chocho.MainActivity">
             <meta-data
